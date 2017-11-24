@@ -400,6 +400,13 @@ TABS.motors.initialize = function (callback) {
             accel_offset_established = false;
         });
 
+        $('a.set').click(function () {
+            var val = $('.tab-motors select[name="motorpwm"]').val();
+            $('div.sliders input:not(:disabled, :last)').val(val);
+            $('div.values li:not(:last)').slice(0, number_of_valid_outputs).text(val);
+            $('div.sliders input:not(:last):first').trigger('input');
+        });
+
         var number_of_valid_outputs = (MOTOR_DATA.indexOf(0) > -1) ? MOTOR_DATA.indexOf(0) : 8;
         var rangeMin;
         var rangeMax;
